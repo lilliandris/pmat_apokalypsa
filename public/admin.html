@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Admin · Hra na sústredenie</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="topbar">
+  <h1>🛠 Admin panel</h1>
+  <div class="right">
+    <span id="user-name"></span>
+    <a href="/leader" class="btn" style="padding:6px 14px; font-size:0.85rem;">Panel vedúceho</a>
+    <a href="/live" class="btn" style="padding:6px 14px; font-size:0.85rem;">Live tabuľa</a>
+    <button class="btn" id="logout-btn" style="padding:6px 14px; font-size:0.85rem;">Odhlásiť</button>
+  </div>
+</div>
+<div class="container">
+
+  <div class="card">
+    <h2>Riadenie hry</h2>
+    <p class="muted" style="margin-top:-6px; font-size:0.85rem;">
+      Odpočet účastníkov beží len kým je hra spustená. Pridanie účastníka hru samo o sebe
+      neodštartuje - môžeš pokojne najprv pridať všetkých a hru spustiť, až keď budete pripravení.
+    </p>
+    <div class="row" style="align-items:center;">
+      <span class="tag" id="game-status-tag">…</span>
+      <button class="btn btn-primary" id="game-start-btn">▶ Štart</button>
+      <button class="btn" id="game-pause-btn">⏸ Pauza</button>
+      <button class="btn btn-danger" id="game-reset-btn">⟲ Reset</button>
+    </div>
+    <div class="msg hidden" id="game-msg"></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="participants">Účastníci</button>
+    <button class="tab-btn" data-tab="users">Vedúci a účty</button>
+    <button class="tab-btn" data-tab="settings">Nastavenia</button>
+  </div>
+
+  <!-- ÚČASTNÍCI -->
+  <div class="tab-panel active" id="tab-participants">
+    <div class="card">
+      <h2>Pridať nového účastníka</h2>
+      <p class="muted" style="margin-top:-6px; font-size:0.85rem;">
+        Hneď po pridaní sa účastník zobrazí vo všetkých paneloch a začne mu bežať odpočet
+        od aktuálne nastaveného štartovacieho času.
+      </p>
+      <div class="row">
+        <div class="field" style="margin-bottom:0;">
+          <label for="new-name">Meno dieťaťa</label>
+          <input type="text" id="new-name" placeholder="napr. Janko Hraško">
+        </div>
+        <button class="btn btn-primary" id="add-participant-btn">+ Pridať účastníka</button>
+      </div>
+      <div class="msg hidden" id="add-participant-msg"></div>
+    </div>
+
+    <div class="card">
+      <h2>Zoznam účastníkov</h2>
+      <table id="participants-table">
+        <thead>
+          <tr><th>Meno</th><th>Stav</th><th>Zostáva</th><th></th></tr>
+        </thead>
+        <tbody id="participants-tbody"></tbody>
+      </table>
+      <p class="muted hidden" id="participants-empty">Zatiaľ žiadni účastníci.</p>
+    </div>
+  </div>
+
+  <!-- VEDÚCI A ÚČTY -->
+  <div class="tab-panel" id="tab-users">
+    <div class="card">
+      <h2>Vytvoriť účet</h2>
+      <p class="muted" style="margin-top:-6px; font-size:0.85rem;">
+        Vedúci sa nemôžu registrovať sami - účty im vytvára výhradne admin.
+      </p>
+      <div class="row">
+        <div class="field" style="margin-bottom:0;">
+          <label for="new-user-name">Zobrazované meno</label>
+          <input type="text" id="new-user-name" placeholder="napr. Zuzka Vedúca">
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="new-username">Prihlasovacie meno</label>
+          <input type="text" id="new-username" placeholder="napr. zuzka">
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="new-password">Heslo</label>
+          <input type="password" id="new-password" placeholder="heslo">
+        </div>
+        <div class="field" style="margin-bottom:0;">
+          <label for="new-role">Rola</label>
+          <select id="new-role">
+            <option value="leader">Vedúci</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button class="btn btn-primary" id="add-user-btn">+ Vytvoriť účet</button>
+      </div>
+      <div class="msg hidden" id="add-user-msg"></div>
+    </div>
+
+    <div class="card">
+      <h2>Existujúce účty</h2>
+      <table>
+        <thead><tr><th>Meno</th><th>Prihlasovacie meno</th><th>Rola</th><th></th></tr></thead>
+        <tbody id="users-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- NASTAVENIA -->
+  <div class="tab-panel" id="tab-settings">
+    <div class="card">
+      <h2>Štartovací čas</h2>
+      <p class="muted" style="margin-top:-6px; font-size:0.85rem;">
+        Každý nový účastník dostane pri pridaní presne tento čas (v minútach) a od tej chvíle mu
+        beží odpočet. Zmena ovplyvní len účastníkov pridaných po uložení.
+      </p>
+      <div class="row">
+        <div class="field" style="margin-bottom:0; max-width: 220px;">
+          <label for="starting-minutes">Minúty na štarte</label>
+          <input type="number" id="starting-minutes" min="1" step="1">
+        </div>
+        <button class="btn btn-primary" id="save-settings-btn">Uložiť</button>
+      </div>
+      <div class="msg hidden" id="settings-msg"></div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Panel histórie / opráv pre konkrétneho účastníka -->
+<div class="card hidden" id="history-overlay" style="position:fixed; inset:0; z-index:50; border-radius:0; overflow-y:auto; background: rgba(10,12,16,0.97);">
+  <div class="container" style="max-width: 760px;">
+    <div class="row" style="align-items:center;">
+      <h2 id="history-title" style="margin:0;">História nahrávok</h2>
+      <button class="btn" id="history-close-btn" style="max-width:120px;">✕ Zavrieť</button>
+    </div>
+    <p class="muted" style="font-size:0.85rem;">
+      Ako admin tu môžeš opraviť alebo vymazať chybne nahratú dávku prísad - čas účastníka sa
+      okamžite prepočíta.
+    </p>
+
+    <div class="card" style="margin-bottom:18px;">
+      <h2 style="margin-top:0;">Manuálna úprava zostávajúceho času</h2>
+      <p class="muted" style="margin-top:-6px; font-size:0.85rem;">
+        Nastaví účastníkovi presne taký zostávajúci čas, aký zadáš - napríklad keď odpočet
+        z nejakého dôvodu nesedí so skutočnosťou. V histórii nahrávok sa táto úprava nezobrazuje.
+      </p>
+      <p style="margin: 4px 0 12px;">Aktuálne zostáva: <strong id="manual-time-current">—</strong></p>
+      <div class="row" style="align-items:flex-end;">
+        <div class="field" style="margin-bottom:0; max-width:110px;">
+          <label for="manual-time-minutes">Minúty</label>
+          <input type="number" id="manual-time-minutes" min="0" step="1">
+        </div>
+        <div class="field" style="margin-bottom:0; max-width:110px;">
+          <label for="manual-time-seconds">Sekundy</label>
+          <input type="number" id="manual-time-seconds" min="0" max="59" step="1">
+        </div>
+        <button class="btn btn-primary" id="manual-time-save-btn">Nastaviť presný čas</button>
+      </div>
+      <div class="msg hidden" id="manual-time-msg"></div>
+    </div>
+
+    <div id="history-list" class="history-list"></div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

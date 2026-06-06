@@ -1,0 +1,17 @@
+{
+  "name": "apocalypse",
+  "version": "1.0.0",
+  "description": "Hra na sustredenie - admin panel, veduci panel a live tabula s odpoctom casu do smrti",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node --test test/*.test.js"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "socket.io": "^4.7.5"
+  }
+}

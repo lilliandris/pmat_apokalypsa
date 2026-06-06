@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Vedúci · Hra na sústredenie</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="topbar">
+  <h1>🧪 Panel vedúceho</h1>
+  <div class="right">
+    <span id="user-name"></span>
+    <a href="/live" class="btn" style="padding:6px 14px; font-size:0.85rem;">Live tabuľa</a>
+    <button class="btn" id="logout-btn" style="padding:6px 14px; font-size:0.85rem;">Odhlásiť</button>
+  </div>
+</div>
+<div class="container">
+
+  <div class="card">
+    <h2>1. Nájdi účastníka</h2>
+    <div class="search-wrap">
+      <label for="search">Meno účastníka</label>
+      <input type="text" id="search" placeholder="Začni písať meno..." autocomplete="off">
+      <div class="search-results hidden" id="search-results"></div>
+    </div>
+
+    <div class="selected-participant hidden" id="selected-box">
+      <div>
+        <div class="sp-name" id="sp-name"></div>
+        <div class="sp-time" id="sp-time"></div>
+      </div>
+      <button class="btn" id="clear-selection-btn">Zmeniť účastníka</button>
+    </div>
+    <div class="cooldown-banner" id="cooldown-banner"></div>
+  </div>
+
+  <div class="card" id="ingredients-card" style="display:none;">
+    <h2>2. Vyber prísady, ktoré ti účastník odovzdal</h2>
+    <p class="muted" style="margin-top:-6px; font-size:0.85rem;">Môžeš vybrať aj viacero naraz.</p>
+    <div class="ingredient-grid" id="ingredient-grid"></div>
+
+    <div class="upload-bar">
+      <span class="count" id="selection-count">Vybraných: 0</span>
+      <button class="btn btn-primary" id="upload-btn" disabled>⬆ Nahrať</button>
+    </div>
+    <div class="msg hidden" id="upload-msg"></div>
+  </div>
+
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/leader.js"></script>
+</body>
+</html>

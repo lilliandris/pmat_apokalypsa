@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Live tabuľa · Hra na sústredenie</title>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<div class="topbar">
+  <h1>⏳ Live tabuľa</h1>
+  <div class="right">
+    <span class="clock" id="clock"></span>
+    <a href="/login" class="btn" style="padding:6px 14px; font-size:0.85rem;">Prihlásenie</a>
+    <button class="btn" id="hide-bar-btn" title="Skryť horný panel (späť ho vrátiš klávesou Esc)" style="padding:6px 14px; font-size:0.85rem;">🙈 Skryť panel</button>
+  </div>
+</div>
+<div class="container">
+  <div class="live-banner hidden" id="game-banner"></div>
+  <div id="grid" class="live-grid"></div>
+  <div id="empty" class="live-empty hidden">Zatiaľ tu nie sú žiadni účastníci. Admin ich môže pridať v admin paneli.</div>
+</div>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/common.js"></script>
+<script src="/js/live.js"></script>
+</body>
+</html>
