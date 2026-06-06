@@ -71,10 +71,11 @@ function load() {
 
   if (db.users.length === 0) {
     const id = crypto.randomUUID();
-    const password = 'admin123';
+    const username = config.ADMIN_USERNAME;
+    const password = config.ADMIN_PASSWORD;
     db.users.push({
       id,
-      username: 'admin',
+      username,
       passwordHash: bcrypt.hashSync(password, 10),
       role: 'admin',
       name: 'Administrátor',
@@ -82,8 +83,9 @@ function load() {
     save();
     console.log('================================================');
     console.log(' Vytvorený predvolený admin účet:');
-    console.log('   používateľské meno: admin');
+    console.log('   používateľské meno: ' + username);
     console.log('   heslo:              ' + password);
+    console.log(' Nastav si vlastné v .env (ADMIN_USERNAME / ADMIN_PASSWORD).');
     console.log(' Po prihlásení si v admin paneli vytvor ďalšie účty.');
     console.log('================================================');
   }

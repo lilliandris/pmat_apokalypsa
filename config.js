@@ -1,5 +1,7 @@
 'use strict';
 
+require('dotenv').config();
+
 // Zoznam 25 prísad, z ktorých vedúci vyberajú kombináciu, ktorú im účastník odovzdal.
 // Skutočná logika výpočtu (ktoré kombinácie pridávajú/uberajú čas) zatiaľ nie je známa,
 // preto calculate.js zatiaľ vracia jednotnú hodnotu pre akýkoľvek výber - viď calculate.js.
@@ -40,9 +42,17 @@ const DEFAULT_STARTING_MINUTES = 60;
 
 const SESSION_SECRET = process.env.SESSION_SECRET || 'apocalypse-sustredenie-tajny-kluc';
 
+// Prihlasovacie údaje predvoleného admin účtu, ktorý sa vytvorí pri prvom spustení
+// (keď je databáza používateľov prázdna). Nastav si vlastné v .env, inak sa použijú
+// tieto predvolené hodnoty.
+const ADMIN_USERNAME = process.env.ADMIN_USERNAME || 'admin';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'admin123';
+
 module.exports = {
   INGREDIENTS,
   SUBMISSION_COOLDOWN_MS,
   DEFAULT_STARTING_MINUTES,
   SESSION_SECRET,
+  ADMIN_USERNAME,
+  ADMIN_PASSWORD,
 };
