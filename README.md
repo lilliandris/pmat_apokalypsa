@@ -1,4 +1,4 @@
-# Apocalypse — hra na sústredenie ☠️
+# Apokalypsa
 
 ![Náhľad live tabule](live_screenshot.png)
 
