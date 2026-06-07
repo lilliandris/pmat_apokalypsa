@@ -56,13 +56,20 @@ admini) a prvý admin účet preferenčne preheslúj.
 
 ### Konfigurácia
 
-Voliteľné premenné prostredia:
+Voliteľné premenné prostredia (pozri vzor v `.env.template` — skopíruj ho ako
+`.env` a uprav hodnoty; `.env` sa do gitu necommitne):
 
-| Premenná         | Význam                                                        | Predvolená hodnota               |
-|------------------|---------------------------------------------------------------|----------------------------------|
-| `PORT`           | port, na ktorom server počúva                                 | `3000`                           |
-| `SESSION_SECRET` | tajný kľúč pre podpisovanie session cookies                   | vstavaný (zmeň si ho v produkcii)|
-| `DB_FILE`        | cesta k JSON súboru s dátami (využíva sa hlavne v testoch)    | `data/db.json`                   |
+| Premenná          | Význam                                                        | Predvolená hodnota               |
+|-------------------|----------------------------------------------------------------|----------------------------------|
+| `PORT`            | port, na ktorom server počúva                                 | `3000`                           |
+| `SESSION_SECRET`  | tajný kľúč pre podpisovanie session cookies                   | vstavaný (zmeň si ho v produkcii)|
+| `ADMIN_USERNAME`  | používateľské meno predvoleného admin účtu (vytvorí sa len pri prázdnej databáze používateľov) | `admin`    |
+| `ADMIN_PASSWORD`  | heslo predvoleného admin účtu (vytvorí sa len pri prázdnej databáze používateľov) | `admin123` |
+| `DB_FILE`         | cesta k JSON súboru s dátami (využíva sa hlavne v testoch)    | `data/db.json`                   |
+
+Pokým si nevytvoríš vlastný `.env`, server použije tieto predvolené hodnoty
+(vrátane prihlasovacích údajov admina `admin` / `admin123`) — v produkcii si ich
+vždy nastav vlastné.
 
 Zoznam prísad, dĺžku odstupu medzi nahrávkami a predvolený štartovací čas
 nájdeš v `config.js`. Skutočný výpočet, ako jednotlivé kombinácie prísad menia
