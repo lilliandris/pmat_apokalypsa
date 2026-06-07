@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2026 Patrik Bukovský @ Lilliandris
+ * Licensed under the MIT License. See LICENSE file in the project root.
+ */
+
 'use strict';
 
 (async function init() {

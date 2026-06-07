@@ -1,5 +1,7 @@
 # Apocalypse — hra na sústredenie ☠️
 
+![Náhľad live tabule](live_screenshot.png)
+
 Webová aplikácia pre detské sústredenie: každé dieťa dostane na začiatku odpočet
 ("čas do zániku") a vedúci mu počas hry nahrávajú dávky vyzbieraných "prísad",
 ktoré tento čas predlžujú alebo skracujú. Aplikácia v reálnom čase zobrazuje
